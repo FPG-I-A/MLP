@@ -39,3 +39,5 @@ O hardware de uma FPGA não possuí diversas operações matemáticas necessári
 Vale notar que, além disso, não há unidades de ponto flutuante, então, ao menos por enquanto, decidimos utilizar números de ponto fixo.
 
 Cada módulo possuí uma sessão de mapeamento genérico e uma de mapeamento de portas, além de uma descrição de seu funcionamento.
+
+- [`norm`](modulos/norm/README.md)

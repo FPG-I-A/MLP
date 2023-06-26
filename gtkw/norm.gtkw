@@ -1,0 +1,67 @@
+[*]
+[*] GTKWave Analyzer v3.3.115 (w)1999-2023 BSI
+[*] Fri Jun  9 11:36:08 2023
+[*]
+[dumpfile] "/home/luis.amorim/git/k-NN/resultados/norm/norm_tb.ghw"
+[dumpfile_mtime] "Fri Jun  9 11:36:06 2023"
+[dumpfile_size] 3236
+[savefile] "/home/luis.amorim/git/k-NN/gtkw/norm.gtkw"
+[timestart] 0
+[size] 1920 492
+[pos] 0 0
+*-30.900000 2800000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top.
+[treeopen] top.norm_tb.
+[treeopen] top.norm_tb.uut.
+[sst_width] 268
+[signals_width] 230
+[sst_expanded] 1
+[sst_vpaned_height] 120
+@28
+top.norm_tb.i_clk
+top.norm_tb.i_init
+top.norm_tb.o_ocupado
+@40000420
+[fpshift_count] 12
+#{top.norm_tb.i_x[0][3:-12]} top.norm_tb.i_x[0][3] top.norm_tb.i_x[0][2] top.norm_tb.i_x[0][1] top.norm_tb.i_x[0][0] top.norm_tb.i_x[0][-1] top.norm_tb.i_x[0][-2] top.norm_tb.i_x[0][-3] top.norm_tb.i_x[0][-4] top.norm_tb.i_x[0][-5] top.norm_tb.i_x[0][-6] top.norm_tb.i_x[0][-7] top.norm_tb.i_x[0][-8] top.norm_tb.i_x[0][-9] top.norm_tb.i_x[0][-10] top.norm_tb.i_x[0][-11] top.norm_tb.i_x[0][-12]
+[fpshift_count] 12
+#{top.norm_tb.i_x[1][3:-12]} top.norm_tb.i_x[1][3] top.norm_tb.i_x[1][2] top.norm_tb.i_x[1][1] top.norm_tb.i_x[1][0] top.norm_tb.i_x[1][-1] top.norm_tb.i_x[1][-2] top.norm_tb.i_x[1][-3] top.norm_tb.i_x[1][-4] top.norm_tb.i_x[1][-5] top.norm_tb.i_x[1][-6] top.norm_tb.i_x[1][-7] top.norm_tb.i_x[1][-8] top.norm_tb.i_x[1][-9] top.norm_tb.i_x[1][-10] top.norm_tb.i_x[1][-11] top.norm_tb.i_x[1][-12]
+[fpshift_count] 12
+#{top.norm_tb.i_x[2][3:-12]} top.norm_tb.i_x[2][3] top.norm_tb.i_x[2][2] top.norm_tb.i_x[2][1] top.norm_tb.i_x[2][0] top.norm_tb.i_x[2][-1] top.norm_tb.i_x[2][-2] top.norm_tb.i_x[2][-3] top.norm_tb.i_x[2][-4] top.norm_tb.i_x[2][-5] top.norm_tb.i_x[2][-6] top.norm_tb.i_x[2][-7] top.norm_tb.i_x[2][-8] top.norm_tb.i_x[2][-9] top.norm_tb.i_x[2][-10] top.norm_tb.i_x[2][-11] top.norm_tb.i_x[2][-12]
+[fpshift_count] 12
+#{top.norm_tb.i_x[3][3:-12]} top.norm_tb.i_x[3][3] top.norm_tb.i_x[3][2] top.norm_tb.i_x[3][1] top.norm_tb.i_x[3][0] top.norm_tb.i_x[3][-1] top.norm_tb.i_x[3][-2] top.norm_tb.i_x[3][-3] top.norm_tb.i_x[3][-4] top.norm_tb.i_x[3][-5] top.norm_tb.i_x[3][-6] top.norm_tb.i_x[3][-7] top.norm_tb.i_x[3][-8] top.norm_tb.i_x[3][-9] top.norm_tb.i_x[3][-10] top.norm_tb.i_x[3][-11] top.norm_tb.i_x[3][-12]
+[fpshift_count] 12
+#{top.norm_tb.o_x_norm[0][3:-12]} top.norm_tb.o_x_norm[0][3] top.norm_tb.o_x_norm[0][2] top.norm_tb.o_x_norm[0][1] top.norm_tb.o_x_norm[0][0] top.norm_tb.o_x_norm[0][-1] top.norm_tb.o_x_norm[0][-2] top.norm_tb.o_x_norm[0][-3] top.norm_tb.o_x_norm[0][-4] top.norm_tb.o_x_norm[0][-5] top.norm_tb.o_x_norm[0][-6] top.norm_tb.o_x_norm[0][-7] top.norm_tb.o_x_norm[0][-8] top.norm_tb.o_x_norm[0][-9] top.norm_tb.o_x_norm[0][-10] top.norm_tb.o_x_norm[0][-11] top.norm_tb.o_x_norm[0][-12]
+[fpshift_count] 12
+#{top.norm_tb.o_x_norm[1][3:-12]} top.norm_tb.o_x_norm[1][3] top.norm_tb.o_x_norm[1][2] top.norm_tb.o_x_norm[1][1] top.norm_tb.o_x_norm[1][0] top.norm_tb.o_x_norm[1][-1] top.norm_tb.o_x_norm[1][-2] top.norm_tb.o_x_norm[1][-3] top.norm_tb.o_x_norm[1][-4] top.norm_tb.o_x_norm[1][-5] top.norm_tb.o_x_norm[1][-6] top.norm_tb.o_x_norm[1][-7] top.norm_tb.o_x_norm[1][-8] top.norm_tb.o_x_norm[1][-9] top.norm_tb.o_x_norm[1][-10] top.norm_tb.o_x_norm[1][-11] top.norm_tb.o_x_norm[1][-12]
+[fpshift_count] 12
+#{top.norm_tb.o_x_norm[2][3:-12]} top.norm_tb.o_x_norm[2][3] top.norm_tb.o_x_norm[2][2] top.norm_tb.o_x_norm[2][1] top.norm_tb.o_x_norm[2][0] top.norm_tb.o_x_norm[2][-1] top.norm_tb.o_x_norm[2][-2] top.norm_tb.o_x_norm[2][-3] top.norm_tb.o_x_norm[2][-4] top.norm_tb.o_x_norm[2][-5] top.norm_tb.o_x_norm[2][-6] top.norm_tb.o_x_norm[2][-7] top.norm_tb.o_x_norm[2][-8] top.norm_tb.o_x_norm[2][-9] top.norm_tb.o_x_norm[2][-10] top.norm_tb.o_x_norm[2][-11] top.norm_tb.o_x_norm[2][-12]
+[fpshift_count] 12
+#{top.norm_tb.o_x_norm[3][3:-12]} top.norm_tb.o_x_norm[3][3] top.norm_tb.o_x_norm[3][2] top.norm_tb.o_x_norm[3][1] top.norm_tb.o_x_norm[3][0] top.norm_tb.o_x_norm[3][-1] top.norm_tb.o_x_norm[3][-2] top.norm_tb.o_x_norm[3][-3] top.norm_tb.o_x_norm[3][-4] top.norm_tb.o_x_norm[3][-5] top.norm_tb.o_x_norm[3][-6] top.norm_tb.o_x_norm[3][-7] top.norm_tb.o_x_norm[3][-8] top.norm_tb.o_x_norm[3][-9] top.norm_tb.o_x_norm[3][-10] top.norm_tb.o_x_norm[3][-11] top.norm_tb.o_x_norm[3][-12]
+[fpshift_count] 12
+#{top.norm_tb.uut.maiores[0][3:-12]} top.norm_tb.uut.maiores[0][3] top.norm_tb.uut.maiores[0][2] top.norm_tb.uut.maiores[0][1] top.norm_tb.uut.maiores[0][0] top.norm_tb.uut.maiores[0][-1] top.norm_tb.uut.maiores[0][-2] top.norm_tb.uut.maiores[0][-3] top.norm_tb.uut.maiores[0][-4] top.norm_tb.uut.maiores[0][-5] top.norm_tb.uut.maiores[0][-6] top.norm_tb.uut.maiores[0][-7] top.norm_tb.uut.maiores[0][-8] top.norm_tb.uut.maiores[0][-9] top.norm_tb.uut.maiores[0][-10] top.norm_tb.uut.maiores[0][-11] top.norm_tb.uut.maiores[0][-12]
+[fpshift_count] 12
+#{top.norm_tb.uut.menores[0][3:-12]} top.norm_tb.uut.menores[0][3] top.norm_tb.uut.menores[0][2] top.norm_tb.uut.menores[0][1] top.norm_tb.uut.menores[0][0] top.norm_tb.uut.menores[0][-1] top.norm_tb.uut.menores[0][-2] top.norm_tb.uut.menores[0][-3] top.norm_tb.uut.menores[0][-4] top.norm_tb.uut.menores[0][-5] top.norm_tb.uut.menores[0][-6] top.norm_tb.uut.menores[0][-7] top.norm_tb.uut.menores[0][-8] top.norm_tb.uut.menores[0][-9] top.norm_tb.uut.menores[0][-10] top.norm_tb.uut.menores[0][-11] top.norm_tb.uut.menores[0][-12]
+[fpshift_count] 12
+#{top.norm_tb.uut.maiores[1][3:-12]} top.norm_tb.uut.maiores[1][3] top.norm_tb.uut.maiores[1][2] top.norm_tb.uut.maiores[1][1] top.norm_tb.uut.maiores[1][0] top.norm_tb.uut.maiores[1][-1] top.norm_tb.uut.maiores[1][-2] top.norm_tb.uut.maiores[1][-3] top.norm_tb.uut.maiores[1][-4] top.norm_tb.uut.maiores[1][-5] top.norm_tb.uut.maiores[1][-6] top.norm_tb.uut.maiores[1][-7] top.norm_tb.uut.maiores[1][-8] top.norm_tb.uut.maiores[1][-9] top.norm_tb.uut.maiores[1][-10] top.norm_tb.uut.maiores[1][-11] top.norm_tb.uut.maiores[1][-12]
+[fpshift_count] 12
+#{top.norm_tb.uut.menores[1][3:-12]} top.norm_tb.uut.menores[1][3] top.norm_tb.uut.menores[1][2] top.norm_tb.uut.menores[1][1] top.norm_tb.uut.menores[1][0] top.norm_tb.uut.menores[1][-1] top.norm_tb.uut.menores[1][-2] top.norm_tb.uut.menores[1][-3] top.norm_tb.uut.menores[1][-4] top.norm_tb.uut.menores[1][-5] top.norm_tb.uut.menores[1][-6] top.norm_tb.uut.menores[1][-7] top.norm_tb.uut.menores[1][-8] top.norm_tb.uut.menores[1][-9] top.norm_tb.uut.menores[1][-10] top.norm_tb.uut.menores[1][-11] top.norm_tb.uut.menores[1][-12]
+[fpshift_count] 12
+#{top.norm_tb.uut.maiores[2][3:-12]} top.norm_tb.uut.maiores[2][3] top.norm_tb.uut.maiores[2][2] top.norm_tb.uut.maiores[2][1] top.norm_tb.uut.maiores[2][0] top.norm_tb.uut.maiores[2][-1] top.norm_tb.uut.maiores[2][-2] top.norm_tb.uut.maiores[2][-3] top.norm_tb.uut.maiores[2][-4] top.norm_tb.uut.maiores[2][-5] top.norm_tb.uut.maiores[2][-6] top.norm_tb.uut.maiores[2][-7] top.norm_tb.uut.maiores[2][-8] top.norm_tb.uut.maiores[2][-9] top.norm_tb.uut.maiores[2][-10] top.norm_tb.uut.maiores[2][-11] top.norm_tb.uut.maiores[2][-12]
+[fpshift_count] 12
+#{top.norm_tb.uut.menores[2][3:-12]} top.norm_tb.uut.menores[2][3] top.norm_tb.uut.menores[2][2] top.norm_tb.uut.menores[2][1] top.norm_tb.uut.menores[2][0] top.norm_tb.uut.menores[2][-1] top.norm_tb.uut.menores[2][-2] top.norm_tb.uut.menores[2][-3] top.norm_tb.uut.menores[2][-4] top.norm_tb.uut.menores[2][-5] top.norm_tb.uut.menores[2][-6] top.norm_tb.uut.menores[2][-7] top.norm_tb.uut.menores[2][-8] top.norm_tb.uut.menores[2][-9] top.norm_tb.uut.menores[2][-10] top.norm_tb.uut.menores[2][-11] top.norm_tb.uut.menores[2][-12]
+[fpshift_count] 12
+#{top.norm_tb.uut.maiores[3][3:-12]} top.norm_tb.uut.maiores[3][3] top.norm_tb.uut.maiores[3][2] top.norm_tb.uut.maiores[3][1] top.norm_tb.uut.maiores[3][0] top.norm_tb.uut.maiores[3][-1] top.norm_tb.uut.maiores[3][-2] top.norm_tb.uut.maiores[3][-3] top.norm_tb.uut.maiores[3][-4] top.norm_tb.uut.maiores[3][-5] top.norm_tb.uut.maiores[3][-6] top.norm_tb.uut.maiores[3][-7] top.norm_tb.uut.maiores[3][-8] top.norm_tb.uut.maiores[3][-9] top.norm_tb.uut.maiores[3][-10] top.norm_tb.uut.maiores[3][-11] top.norm_tb.uut.maiores[3][-12]
+[fpshift_count] 12
+#{top.norm_tb.uut.menores[3][3:-12]} top.norm_tb.uut.menores[3][3] top.norm_tb.uut.menores[3][2] top.norm_tb.uut.menores[3][1] top.norm_tb.uut.menores[3][0] top.norm_tb.uut.menores[3][-1] top.norm_tb.uut.menores[3][-2] top.norm_tb.uut.menores[3][-3] top.norm_tb.uut.menores[3][-4] top.norm_tb.uut.menores[3][-5] top.norm_tb.uut.menores[3][-6] top.norm_tb.uut.menores[3][-7] top.norm_tb.uut.menores[3][-8] top.norm_tb.uut.menores[3][-9] top.norm_tb.uut.menores[3][-10] top.norm_tb.uut.menores[3][-11] top.norm_tb.uut.menores[3][-12]
+@40000421
+[fpshift_count] 12
+#{top.norm_tb.uut.resultado[0][3:-12]} top.norm_tb.uut.resultado[0][3] top.norm_tb.uut.resultado[0][2] top.norm_tb.uut.resultado[0][1] top.norm_tb.uut.resultado[0][0] top.norm_tb.uut.resultado[0][-1] top.norm_tb.uut.resultado[0][-2] top.norm_tb.uut.resultado[0][-3] top.norm_tb.uut.resultado[0][-4] top.norm_tb.uut.resultado[0][-5] top.norm_tb.uut.resultado[0][-6] top.norm_tb.uut.resultado[0][-7] top.norm_tb.uut.resultado[0][-8] top.norm_tb.uut.resultado[0][-9] top.norm_tb.uut.resultado[0][-10] top.norm_tb.uut.resultado[0][-11] top.norm_tb.uut.resultado[0][-12]
+[fpshift_count] 12
+#{top.norm_tb.uut.resultado[1][3:-12]} top.norm_tb.uut.resultado[1][3] top.norm_tb.uut.resultado[1][2] top.norm_tb.uut.resultado[1][1] top.norm_tb.uut.resultado[1][0] top.norm_tb.uut.resultado[1][-1] top.norm_tb.uut.resultado[1][-2] top.norm_tb.uut.resultado[1][-3] top.norm_tb.uut.resultado[1][-4] top.norm_tb.uut.resultado[1][-5] top.norm_tb.uut.resultado[1][-6] top.norm_tb.uut.resultado[1][-7] top.norm_tb.uut.resultado[1][-8] top.norm_tb.uut.resultado[1][-9] top.norm_tb.uut.resultado[1][-10] top.norm_tb.uut.resultado[1][-11] top.norm_tb.uut.resultado[1][-12]
+[fpshift_count] 12
+#{top.norm_tb.uut.resultado[2][3:-12]} top.norm_tb.uut.resultado[2][3] top.norm_tb.uut.resultado[2][2] top.norm_tb.uut.resultado[2][1] top.norm_tb.uut.resultado[2][0] top.norm_tb.uut.resultado[2][-1] top.norm_tb.uut.resultado[2][-2] top.norm_tb.uut.resultado[2][-3] top.norm_tb.uut.resultado[2][-4] top.norm_tb.uut.resultado[2][-5] top.norm_tb.uut.resultado[2][-6] top.norm_tb.uut.resultado[2][-7] top.norm_tb.uut.resultado[2][-8] top.norm_tb.uut.resultado[2][-9] top.norm_tb.uut.resultado[2][-10] top.norm_tb.uut.resultado[2][-11] top.norm_tb.uut.resultado[2][-12]
+[fpshift_count] 12
+#{top.norm_tb.uut.resultado[3][3:-12]} top.norm_tb.uut.resultado[3][3] top.norm_tb.uut.resultado[3][2] top.norm_tb.uut.resultado[3][1] top.norm_tb.uut.resultado[3][0] top.norm_tb.uut.resultado[3][-1] top.norm_tb.uut.resultado[3][-2] top.norm_tb.uut.resultado[3][-3] top.norm_tb.uut.resultado[3][-4] top.norm_tb.uut.resultado[3][-5] top.norm_tb.uut.resultado[3][-6] top.norm_tb.uut.resultado[3][-7] top.norm_tb.uut.resultado[3][-8] top.norm_tb.uut.resultado[3][-9] top.norm_tb.uut.resultado[3][-10] top.norm_tb.uut.resultado[3][-11] top.norm_tb.uut.resultado[3][-12]
+[pattern_trace] 1
+[pattern_trace] 0
