@@ -41,3 +41,4 @@ Vale notar que, além disso, não há unidades de ponto flutuante, então, ao me
 Cada módulo possuí uma sessão de mapeamento genérico e uma de mapeamento de portas, além de uma descrição de seu funcionamento.
 
 - [`norm`](modulos/norm/README.md)
+- [`vec_mat_mul`](modulos/vec_mat_mul/README.md)
