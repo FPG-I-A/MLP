@@ -1,9 +1,9 @@
 [*]
 [*] GTKWave Analyzer v3.3.114 (w)1999-2023 BSI
-[*] Thu Jul  6 11:31:05 2023
+[*] Thu Jul  6 13:51:37 2023
 [*]
 [dumpfile] "/home/luis/git/MLP/resultados/sigmoide/sigmoide_tb.ghw"
-[dumpfile_mtime] "Thu Jul  6 11:30:51 2023"
+[dumpfile_mtime] "Thu Jul  6 13:51:36 2023"
 [dumpfile_size] 795652
 [savefile] "/home/luis/git/MLP/gtkw/sigmoide.gtkw"
 [timestart] 0

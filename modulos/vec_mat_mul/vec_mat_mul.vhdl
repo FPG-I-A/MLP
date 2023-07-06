@@ -53,11 +53,9 @@ begin
             linha_matriz   <= 0;
             coluna_matriz  <= 0;
 
-            report "Linhas: " & integer'image(entradas) & ", Colunas: " & integer'image(neuronios);
         end if;
 
         if o_ocupado = '1' then
-            report "Linha: " & integer'image(linha_matriz) & ", Coluna: " & integer'image(coluna_matriz);
             -- Primeiro: itera na coluna da matriz e multiplica pelo vetor, somando ao resultado
             if linha_matriz < entradas then
                 resultado(coluna_matriz) <= resize(resultado(coluna_matriz) + vetor(linha_matriz) * matriz(linha_matriz, coluna_matriz), resultado(0));
