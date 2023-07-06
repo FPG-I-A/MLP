@@ -13,17 +13,17 @@ architecture sim of ativacao_tb is
     constant tamanho_in : integer := 4;
 
     -- portas do componente
-    signal i_clk     : bit := '0';
-    signal i_init    : bit := '0';
-    signal i_reset   : bit := '0';
-    signal o_ocupado : bit := '0';
+    signal i_clk     : bit                                 := '0';
+    signal i_init    : bit                                 := '0';
+    signal i_reset   : bit                                 := '0';
+    signal o_ocupado : bit                                 := '0';
     signal i_vec     : vec_s_fixo(tamanho_in - 1 downto 0) := (others => to_sfixed(0, parte_inteira, parte_fracionaria));
     signal resultado : vec_s_fixo(tamanho_in - 1 downto 0) := (others => to_sfixed(0, parte_inteira, parte_fracionaria));
     signal vieses : vec_s_fixo(tamanho_in - 1 downto 0) := (
-        0 => to_sfixed(0, parte_inteira, parte_fracionaria),
-        1 => to_sfixed(1, parte_inteira, parte_fracionaria),
-        2 => to_sfixed(2, parte_inteira, parte_fracionaria),
-        3 => to_sfixed(3, parte_inteira, parte_fracionaria),
+        0      => to_sfixed(0, parte_inteira, parte_fracionaria),
+        1      => to_sfixed(1, parte_inteira, parte_fracionaria),
+        2      => to_sfixed(2, parte_inteira, parte_fracionaria),
+        3      => to_sfixed(3, parte_inteira, parte_fracionaria),
         others => to_sfixed(0, parte_inteira, parte_fracionaria)
         );
 
@@ -79,8 +79,8 @@ begin
             contador <= contador + 1;
         end if;
     end process conta;
-    
-    
+
+
     termina : process(o_ocupado, i_clk) is
     begin
         if falling_edge(o_ocupado) then
