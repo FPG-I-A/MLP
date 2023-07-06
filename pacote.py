@@ -188,8 +188,8 @@ def gera(
     x_min=-4,
     x_med=0,
     x_max=4,
-    fim_l=.7,
-    fim_n=3.85
+    fim_l=0.7,
+    fim_n=3.85,
 ):
     dados = recebe_dados(seed, tamanho_teste)
     nomes = ['x_treino', 'x_teste', 'y_treino', 'y_teste']
@@ -221,7 +221,7 @@ def gera(
             f'\tconstant sig_y_max         : s_fixo  := to_sfixed({1 / (1 + exp(-x_max)):.10f}, parte_inteira, parte_fracionaria);\n',
             f'\tconstant s_fim_l           : s_fixo  := to_sfixed({1 / (1 + exp(-fim_l))}, parte_inteira, parte_fracionaria);\n'
             f'\tconstant s_fim_n           : s_fixo  := to_sfixed({1 / (1 + exp(-fim_n))}, parte_inteira, parte_fracionaria);\n'
-            f'\tconstant s_fim_med         : s_fixo  := to_sfixed({1 / (1 + exp(-(fim_n + fim_l) / 2))}, parte_inteira, parte_fracionaria);\n'
+            f'\tconstant s_fim_med         : s_fixo  := to_sfixed({1 / (1 + exp(-(fim_n + fim_l) / 2))}, parte_inteira, parte_fracionaria);\n',
         ]
 
         linha = f'\tconstant maior_por_caracteristica : vec_s_fixo({n_caracteristicas} - 1 downto 0) := ('

@@ -3,7 +3,6 @@ import math
 import sys
 from pathlib import Path
 from statistics import mean
-from pathlib import Path
 
 import matplotlib.pyplot as plt
 
@@ -66,7 +65,9 @@ def erros_sigmoide():
 
     def erro(quantidade):
         plt.gca().cla()
-        with open(Path('resultados', 'sigmoide', f'sigmoide_{quantidade}.csv')) as arquivo:
+        with open(
+            Path('resultados', 'sigmoide', f'sigmoide_{quantidade}.csv')
+        ) as arquivo:
             arquivo.readline()
             dados = map(lambda string: string[:-1], arquivo.readlines())
             x, calculado = zip(*map(processa_linha, dados))
@@ -82,7 +83,9 @@ def erros_sigmoide():
         plt.plot(x, calculado)
         plt.plot(x, reais)
         plt.title(f'Sigmoide de {quantidade} parâmetros')
-        plt.savefig(Path('resultados', 'sigmoide', f'sigmoide_{quantidade}.png'))
+        plt.savefig(
+            Path('resultados', 'sigmoide', f'sigmoide_{quantidade}.png')
+        )
 
     erro('quatro')
     erro('tres')

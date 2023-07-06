@@ -175,46 +175,73 @@ def ajusta_padroes(args, parser):
             )
     else:
         percentual_teste = 33
-    
+
     if args.cortes_sigmoide_quatro is not None:
         if len(args.cortes_sigmoide_quatro) != 3:
-            Mensagens.erro(f'Caso os cortes da função sigmoide sejam passados você deve fornecer exatamente três valores na ordem: x_min, x_med e x_max. Porém você forneceu {len(args.cortes_sigmoide)} valores.',
+            Mensagens.erro(
+                f'Caso os cortes da função sigmoide sejam passados você deve fornecer exatamente três valores na ordem: x_min, x_med e x_max. Porém você forneceu {len(args.cortes_sigmoide)} valores.',
                 parser,
             )
         else:
             try:
                 x_min = float(args.cortes_sigmoide_quatro[0])
             except ValueError:
-                Mensagens.erro(f'O valor do corte inferior (x_min) da sigmoide deve ser um número mas você passou `{args.cortes_sigmoide[0]}`', parser)
+                Mensagens.erro(
+                    f'O valor do corte inferior (x_min) da sigmoide deve ser um número mas você passou `{args.cortes_sigmoide[0]}`',
+                    parser,
+                )
             try:
                 x_med = float(args.cortes_sigmoide_quatro[1])
             except ValueError:
-                Mensagens.erro(f'O valor do corte médio (x_med) da sigmoide deve ser um número mas você passou `{args.cortes_sigmoide[1]}`', parser)
+                Mensagens.erro(
+                    f'O valor do corte médio (x_med) da sigmoide deve ser um número mas você passou `{args.cortes_sigmoide[1]}`',
+                    parser,
+                )
             try:
                 x_max = float(args.cortes_sigmoide_quatro[2])
             except ValueError:
-                Mensagens.erro(f'O valor do corte superior (x_max) da sigmoide deve ser um número mas você passou `{args.cortes_sigmoide[2]}`', parser)
+                Mensagens.erro(
+                    f'O valor do corte superior (x_max) da sigmoide deve ser um número mas você passou `{args.cortes_sigmoide[2]}`',
+                    parser,
+                )
     else:
         x_min, x_med, x_max = -4, 0, 4
 
     if args.cortes_sigmoide_tres is not None:
         if len(args.cortes_sigmoide_tres) != 2:
-            Mensagens.erro(f'Caso os cortes da função sigmoide sejam passados você deve fornecer exatamente dois valores na ordem: fim_l, fim_n. Porém você forneceu {len(args.cortes_sigmoide)} valores.',
+            Mensagens.erro(
+                f'Caso os cortes da função sigmoide sejam passados você deve fornecer exatamente dois valores na ordem: fim_l, fim_n. Porém você forneceu {len(args.cortes_sigmoide)} valores.',
                 parser,
             )
         else:
             try:
                 fim_l = float(args.cortes_sigmoide_tres[0])
             except ValueError:
-                Mensagens.erro(f'O valor do fim da primeira parte linear (fim_l) da sigmoide deve ser um número mas você passou `{args.cortes_sigmoide[0]}`', parser)
+                Mensagens.erro(
+                    f'O valor do fim da primeira parte linear (fim_l) da sigmoide deve ser um número mas você passou `{args.cortes_sigmoide[0]}`',
+                    parser,
+                )
             try:
                 fim_n = float(args.cortes_sigmoide_tres[1])
             except ValueError:
-                Mensagens.erro(f'O valor do fim da parte não linear (fim_n) da sigmoide deve ser um número mas você passou `{args.cortes_sigmoide[1]}`', parser)
+                Mensagens.erro(
+                    f'O valor do fim da parte não linear (fim_n) da sigmoide deve ser um número mas você passou `{args.cortes_sigmoide[1]}`',
+                    parser,
+                )
     else:
-        fim_l = .7
+        fim_l = 0.7
         fim_n = 3.85
-    return parte_inteira, parte_fracionaria, seed, percentual_teste, x_min, x_med, x_max, fim_l, fim_n
+    return (
+        parte_inteira,
+        parte_fracionaria,
+        seed,
+        percentual_teste,
+        x_min,
+        x_med,
+        x_max,
+        fim_l,
+        fim_n,
+    )
 
 
 def ajusta_dependencia(modulos, dependente, *dependencias):
@@ -276,7 +303,17 @@ def move_arquivos(modulos):
         shutil.copy(Path('modulos', modulo, nome_tb), dir_build / nome_tb)
 
 
-def cria_pacote(parte_inteira, parte_fracionaria, seed, percentual_teste, x_min, x_med, x_max, fim_l, fim_n):
+def cria_pacote(
+    parte_inteira,
+    parte_fracionaria,
+    seed,
+    percentual_teste,
+    x_min,
+    x_med,
+    x_max,
+    fim_l,
+    fim_n,
+):
     Mensagens.info('Gerando arquivo da biblioteca')
     gera(
         parte_inteira,
@@ -287,7 +324,7 @@ def cria_pacote(parte_inteira, parte_fracionaria, seed, percentual_teste, x_min,
         x_med,
         x_max,
         fim_l,
-        fim_n
+        fim_n,
     )
 
 
@@ -326,7 +363,11 @@ def compila_modulo(modulo, argumentos, parser, verboso):
 def gera_resultados(modulo):
     pasta_resultados = Path('..', 'resultados')
 
-    para_mover = [arquivo for arquivo in os.listdir() if modulo in arquivo and ('.csv' in arquivo or '.ghw' in arquivo)]
+    para_mover = [
+        arquivo
+        for arquivo in os.listdir()
+        if modulo in arquivo and ('.csv' in arquivo or '.ghw' in arquivo)
+    ]
     for arquivo in para_mover:
 
         resultados_modulo = pasta_resultados / modulo
@@ -348,9 +389,17 @@ if __name__ == '__main__':
     colorama_init()
     parser, args = recebe_argumentos()
 
-    parte_inteira, parte_fracionaria, seed, percentual_teste, x_min, x_med, x_max, fim_l, fim_n = ajusta_padroes(
-        args, parser
-    )
+    (
+        parte_inteira,
+        parte_fracionaria,
+        seed,
+        percentual_teste,
+        x_min,
+        x_med,
+        x_max,
+        fim_l,
+        fim_n,
+    ) = ajusta_padroes(args, parser)
     modulos = seleciona_modulos(args, parser)
     modulos = list(map(lambda p: p.stem, modulos))
 
@@ -361,7 +410,17 @@ if __name__ == '__main__':
     move_arquivos(modulos)
     with working_directory('build'):
         flags = '--std=08'
-        cria_pacote(parte_inteira, parte_fracionaria, seed, percentual_teste, x_min, x_med, x_max, fim_l, fim_n)
+        cria_pacote(
+            parte_inteira,
+            parte_fracionaria,
+            seed,
+            percentual_teste,
+            x_min,
+            x_med,
+            x_max,
+            fim_l,
+            fim_n,
+        )
         compila_pacote(flags, parser, args.verboso)
         for modulo in modulos:
             compila_modulo(modulo, flags, parser, args.verboso)

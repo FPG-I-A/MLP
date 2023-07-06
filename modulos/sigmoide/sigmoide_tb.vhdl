@@ -10,9 +10,9 @@ end sigmoide_tb;
 
 architecture sim of sigmoide_tb is
 
-    signal entrada_ponto_fixo : s_fixo := s_fixo_zero;
-    signal clk                : bit    := '1';
-    signal contador : integer := 0;
+    signal entrada_ponto_fixo : s_fixo  := s_fixo_zero;
+    signal clk                : bit     := '1';
+    signal contador           : integer := 0;
 
     -- portas do componente
     signal resultado_quatro_partes : s_fixo;
@@ -37,7 +37,7 @@ begin
             i_x         => entrada_ponto_fixo,
             o_resultado => resultado_quatro_partes
         );
-    
+
     UUT_tres : entity work.sigmoide(tres_partes)
         generic map(
             gen_x_min => fim_l,
@@ -59,10 +59,10 @@ begin
     end process clock;
 
     itera : process (clk)
-        variable fstatus_quatro_partes : file_open_status;
-        variable fstatus_tres_partes : file_open_status;
+        variable fstatus_quatro_partes   : file_open_status;
+        variable fstatus_tres_partes     : file_open_status;
         variable file_line_quatro_partes : line;
-        variable file_line_tres_partes : line;
+        variable file_line_tres_partes   : line;
     begin
         if rising_edge(clk) then
             if entrada_ponto_fixo = s_fixo_zero then
@@ -86,7 +86,7 @@ begin
             writeline(fptr_tres_partes, file_line_tres_partes);
 
             entrada_ponto_fixo <= resize(entrada_ponto_fixo + s_fixo_lsb, entrada_ponto_fixo);
-            contador <= contador + 1;
+            contador           <= contador + 1;
             if entrada_ponto_fixo = s_fixo_max then
                 finish;
             end if;

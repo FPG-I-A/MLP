@@ -5,7 +5,7 @@ library work;
 use work.pacote_aux.all;
 
 entity sigmoide is
-    generic(
+    generic (
         gen_x_min : s_fixo;
         gen_y_min : s_fixo;
         gen_x_med : s_fixo;
@@ -26,8 +26,8 @@ architecture quatro_partes of sigmoide is
     constant x_sup : s_fixo := s_fixo_max;
 
     -- Primeira parte linear
-    constant b0 : s_fixo := resize(- gen_y_min / (x_inf - gen_x_min), i_x);
-    constant c0 : s_fixo := resize(- b0 * x_inf, i_x);
+    constant b0 : s_fixo := resize(-gen_y_min / (x_inf - gen_x_min), i_x);
+    constant c0 : s_fixo := resize(-b0 * x_inf, i_x);
 
     -- Primeira parte não linear
     constant b1 : s_fixo := resize(gen_x_min / ((2 * gen_x_min * gen_x_med) - (gen_x_med * gen_x_med) - (gen_x_min * gen_x_min)), i_x);
@@ -46,11 +46,11 @@ begin
 
     calcula : process (i_x) begin
         if i_x < gen_x_min then
-            o_resultado <= resize(c0 + b0 * i_x, o_resultado);
+            o_resultado     <= resize(c0 + b0 * i_x, o_resultado);
         elsif gen_x_min <= i_x and i_x < gen_x_med then
-            o_resultado <= resize(c1 + i_x * (b1 + a1 * i_x), o_resultado);
+            o_resultado     <= resize(c1 + i_x * (b1 + a1 * i_x), o_resultado);
         elsif gen_x_med <= i_x and i_x < gen_x_max then
-            o_resultado <= resize(c2 + i_x * (b2 + a2 * i_x), o_resultado);
+            o_resultado     <= resize(c2 + i_x * (b2 + a2 * i_x), o_resultado);
         elsif gen_x_max < i_x then
             o_resultado <= resize(c3 + b3 * i_x, o_resultado);
         end if;
@@ -85,21 +85,19 @@ architecture tres_partes of sigmoide is
 
 begin
 
-    calcula : process(i_x) begin
-        if i_x >= x_inf and i_x <= -fim_n then
-            o_resultado <= resize(1 + a3 * i_x - b3, o_resultado);
-        elsif i_x > -fim_n and i_x <= -fim_l then
-            o_resultado <= resize(1 - c2 + i_x * (- a2 * i_x + b2), o_resultado);
-        elsif i_x > -fim_l and i_x <= 0 then
-            o_resultado <= resize(1 + a1 * i_x - b1, o_resultado);
-        elsif i_x > 0 and i_x <= fim_l then
-            o_resultado <= resize(a1 * i_x + b1, o_resultado);
-        elsif i_x > fim_l and i_x <= fim_n then
-            o_resultado <= resize(c2 + i_x * (a2 * i_x + b2), o_resultado);
+    calcula : process (i_x) begin
+        if i_x >= x_inf and i_x    <= - fim_n then
+            o_resultado                <= resize(1 + a3 * i_x - b3, o_resultado);
+        elsif i_x >- fim_n and i_x <= - fim_l then
+            o_resultado                <= resize(1 - c2 + i_x * (-a2 * i_x + b2), o_resultado);
+        elsif i_x >- fim_l and i_x <= 0 then
+            o_resultado                <= resize(1 + a1 * i_x - b1, o_resultado);
+        elsif i_x > 0 and i_x      <= fim_l then
+            o_resultado                <= resize(a1 * i_x + b1, o_resultado);
+        elsif i_x > fim_l and i_x  <= fim_n then
+            o_resultado                <= resize(c2 + i_x * (a2 * i_x + b2), o_resultado);
         else
             o_resultado <= resize(a3 * i_x + b3, o_resultado);
         end if;
     end process calcula;
 end tres_partes;
-
-

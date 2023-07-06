@@ -28,7 +28,7 @@ def aprox(x, x_max, x_min):
     # Segundo não linear
     b2 = -x_max / (2 * x_max * x_med - x_med**2 - x_max**2)
     a2 = -b2 / (2 * x_max)
-    c2 = 1 + (b2 ** 2) / (4 * a2)
+    c2 = 1 + (b2**2) / (4 * a2)
 
     # Segundo linear
     b3 = (1 - y_max) / (x_sup - x_max)
@@ -53,8 +53,8 @@ def meu(x, fim_l, fim_n):
     s_fim_n = sigmoide(fim_n)
 
     # Primeira parte linear
-    a1 = (.5 - s_fim_l) / (0 - fim_l)
-    b1 = .5 - 0 * a1
+    a1 = (0.5 - s_fim_l) / (0 - fim_l)
+    b1 = 0.5 - 0 * a1
 
     # Parte não linear
     y_med = sigmoide((fim_l + fim_n) / 2)
@@ -82,7 +82,7 @@ def meu(x, fim_l, fim_n):
             resultados.append(c2 + valor * (valor * a2 + b2))
         elif valor > fim_n and valor <= 8:
             resultados.append(a3 * valor + b3)
-        
+
     contador = 0
     for i, x in enumerate(resultados):
         if x > 1:
@@ -93,18 +93,19 @@ def meu(x, fim_l, fim_n):
             contador += 1
     return resultados
 
+
 x = np.linspace(-8.0, 8.0, num=10**6, endpoint=False)
 
 real = sigmoide(x)
 angelo = aprox(x, 4, -4)
-fim_l = .7
+fim_l = 0.7
 fim_n = 3.85
 aproximado = meu(x, fim_l, fim_n)
 
 plt.plot(x, real, label=r'$\sigma(x)$')
 plt.plot(x, aproximado, label=r'$\sigma_{meu}(x)$')
 plt.legend()
-plt.savefig("sig_meu.png")
+plt.savefig('sig_meu.png')
 
 ax = plt.gca()
 ax.cla()
