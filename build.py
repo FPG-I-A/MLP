@@ -101,6 +101,20 @@ def recebe_argumentos():
         action='store',
         help='Percentual do dataset utilizado para teste. Valor padrão: 33.',
     )
+    parser.add_argument(
+        '-c4',
+        '--cortes_sigmoide_quatro',
+        action='store',
+        nargs='*',
+        help='Locais de corte da função sigmoide de quatro segmentos. Ver o README.md deste módulo para saber mais, caso seja fornecido é necessário passar os 3 valores: x_min, x_med e x_max. Caso contrário os valores padrões são, respectivamente -4, 0 e 4.',
+    )
+    parser.add_argument(
+        '-c3',
+        '--cortes_sigmoide_tres',
+        action='store',
+        nargs='*',
+        help='Locais de corte da função sigmoide de três segmentos. Ver o README.md deste módulo para saber mais, caso seja fornecido é necessário passar os 2 valores: fim_l e fim_n. Caso contrário os valores padrões são, respectivamente 0.7 e 3.85.',
+    )
     args = parser.parse_args()
     if args.modulo is not None and args.todos:
         Mensagens.erro(
@@ -161,8 +175,46 @@ def ajusta_padroes(args, parser):
             )
     else:
         percentual_teste = 33
+    
+    if args.cortes_sigmoide_quatro is not None:
+        if len(args.cortes_sigmoide_quatro) != 3:
+            Mensagens.erro(f'Caso os cortes da função sigmoide sejam passados você deve fornecer exatamente três valores na ordem: x_min, x_med e x_max. Porém você forneceu {len(args.cortes_sigmoide)} valores.',
+                parser,
+            )
+        else:
+            try:
+                x_min = float(args.cortes_sigmoide_quatro[0])
+            except ValueError:
+                Mensagens.erro(f'O valor do corte inferior (x_min) da sigmoide deve ser um número mas você passou `{args.cortes_sigmoide[0]}`', parser)
+            try:
+                x_med = float(args.cortes_sigmoide_quatro[1])
+            except ValueError:
+                Mensagens.erro(f'O valor do corte médio (x_med) da sigmoide deve ser um número mas você passou `{args.cortes_sigmoide[1]}`', parser)
+            try:
+                x_max = float(args.cortes_sigmoide_quatro[2])
+            except ValueError:
+                Mensagens.erro(f'O valor do corte superior (x_max) da sigmoide deve ser um número mas você passou `{args.cortes_sigmoide[2]}`', parser)
+    else:
+        x_min, x_med, x_max = -4, 0, 4
 
-    return parte_inteira, parte_fracionaria, seed, percentual_teste
+    if args.cortes_sigmoide_tres is not None:
+        if len(args.cortes_sigmoide_tres) != 2:
+            Mensagens.erro(f'Caso os cortes da função sigmoide sejam passados você deve fornecer exatamente dois valores na ordem: fim_l, fim_n. Porém você forneceu {len(args.cortes_sigmoide)} valores.',
+                parser,
+            )
+        else:
+            try:
+                fim_l = float(args.cortes_sigmoide_tres[0])
+            except ValueError:
+                Mensagens.erro(f'O valor do fim da primeira parte linear (fim_l) da sigmoide deve ser um número mas você passou `{args.cortes_sigmoide[0]}`', parser)
+            try:
+                fim_n = float(args.cortes_sigmoide_tres[1])
+            except ValueError:
+                Mensagens.erro(f'O valor do fim da parte não linear (fim_n) da sigmoide deve ser um número mas você passou `{args.cortes_sigmoide[1]}`', parser)
+    else:
+        fim_l = .7
+        fim_n = 3.85
+    return parte_inteira, parte_fracionaria, seed, percentual_teste, x_min, x_med, x_max, fim_l, fim_n
 
 
 def ajusta_dependencia(modulos, dependente, *dependencias):
@@ -196,7 +248,7 @@ def seleciona_modulos(args, parser):
     # Garante que os módulos que dependem de outros sejam analisados
     # após suas dependências
     dict_deps = {
-       
+        Path('modulos', 'sigmoide_vec'): [Path('modulos', 'sigmoide')]
     }
     for dependente, dependencias in dict_deps.items():
         if dependente in modulos:
@@ -224,9 +276,19 @@ def move_arquivos(modulos):
         shutil.copy(Path('modulos', modulo, nome_tb), dir_build / nome_tb)
 
 
-def cria_pacote(parte_inteira, parte_fracionaria, seed, percentual_teste):
+def cria_pacote(parte_inteira, parte_fracionaria, seed, percentual_teste, x_min, x_med, x_max, fim_l, fim_n):
     Mensagens.info('Gerando arquivo da biblioteca')
-    gera(parte_inteira, parte_fracionaria, seed, percentual_teste)
+    gera(
+        parte_inteira,
+        parte_fracionaria,
+        seed,
+        percentual_teste,
+        x_min,
+        x_med,
+        x_max,
+        fim_l,
+        fim_n
+    )
 
 
 def compila_pacote(argumentos, parser, verboso):
@@ -264,7 +326,8 @@ def compila_modulo(modulo, argumentos, parser, verboso):
 def gera_resultados(modulo):
     pasta_resultados = Path('..', 'resultados')
 
-    for arquivo in [modulo + '.csv', modulo + '_tb.ghw']:
+    para_mover = [arquivo for arquivo in os.listdir() if modulo in arquivo and ('.csv' in arquivo or '.ghw' in arquivo)]
+    for arquivo in para_mover:
 
         resultados_modulo = pasta_resultados / modulo
         resultados_modulo.mkdir(exist_ok=True, parents=True)
@@ -285,7 +348,7 @@ if __name__ == '__main__':
     colorama_init()
     parser, args = recebe_argumentos()
 
-    parte_inteira, parte_fracionaria, seed, percentual_teste = ajusta_padroes(
+    parte_inteira, parte_fracionaria, seed, percentual_teste, x_min, x_med, x_max, fim_l, fim_n = ajusta_padroes(
         args, parser
     )
     modulos = seleciona_modulos(args, parser)
@@ -298,7 +361,7 @@ if __name__ == '__main__':
     move_arquivos(modulos)
     with working_directory('build'):
         flags = '--std=08'
-        cria_pacote(parte_inteira, parte_fracionaria, seed, percentual_teste)
+        cria_pacote(parte_inteira, parte_fracionaria, seed, percentual_teste, x_min, x_med, x_max, fim_l, fim_n)
         compila_pacote(flags, parser, args.verboso)
         for modulo in modulos:
             compila_modulo(modulo, flags, parser, args.verboso)

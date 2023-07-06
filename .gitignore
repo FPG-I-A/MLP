@@ -1,6 +1,19 @@
-/build
-/resultados
-.vscode
-__pycache__/
-.python-version
+# Diretórios indesejados
+build
+resultados
 Dados
+
+# Configurações de editores de texto
+.vscode
+
+# Configurações do ambiente python
+.python-version
+__pycache__/
+
+# Arquivos para geração de pdf usando LaTex
+*.aux
+*.log
+*.out
+
+# Imagens geradas nos testes
+modulos/sigmoide/Testes/*.png

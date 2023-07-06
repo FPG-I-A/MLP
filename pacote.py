@@ -1,4 +1,5 @@
 import os
+from math import exp
 from pathlib import Path
 from zipfile import ZipFile
 
@@ -11,7 +12,6 @@ def recebe_dados(seed, tamanho_teste):
     # Baixa conjunto de dados e salva dados crus
     # TODO: download dos dados se eles não existem
     dados_crus = Path('..', 'Dados', 'iris.csv')
-    
 
     # Carrega conjuntos de dados
     x = np.loadtxt(dados_crus, delimiter=',', usecols=[0, 1, 2, 3])
@@ -180,7 +180,17 @@ def cria_dataset(arquivo, nome, dados, amostras_treino, amostras_teste):
         arquivo.writelines(['\t);\n\n'])
 
 
-def gera(parte_inteira, parte_fracionaria, seed=42, tamanho_teste=0.33):
+def gera(
+    parte_inteira,
+    parte_fracionaria,
+    seed=42,
+    tamanho_teste=0.33,
+    x_min=-4,
+    x_med=0,
+    x_max=4,
+    fim_l=.7,
+    fim_n=3.85
+):
     dados = recebe_dados(seed, tamanho_teste)
     nomes = ['x_treino', 'x_teste', 'y_treino', 'y_teste']
 
@@ -199,7 +209,19 @@ def gera(parte_inteira, parte_fracionaria, seed=42, tamanho_teste=0.33):
             f'\tconstant amostras_treino   : integer := {amostras_treino};\n'
             f'\tconstant amostras_teste    : integer := {amostras_teste};\n'
             f'\tconstant n_classes         : integer := {n_classes};\n'
-            f'\tconstant n_caracteristicas : integer := {n_caracteristicas};\n\n',
+            f'\tconstant n_caracteristicas : integer := {n_caracteristicas};\n',
+            f'\tconstant sig_x_min         : s_fixo  := to_sfixed({x_min}, parte_inteira, parte_fracionaria);\n',
+            f'\tconstant sig_x_med         : s_fixo  := to_sfixed({x_med}, parte_inteira, parte_fracionaria);\n',
+            f'\tconstant sig_x_max         : s_fixo  := to_sfixed({x_max}, parte_inteira, parte_fracionaria);\n',
+            f'\tconstant fim_l             : s_fixo  := to_sfixed({fim_l}, parte_inteira, parte_fracionaria);\n'
+            f'\tconstant fim_n             : s_fixo  := to_sfixed({fim_n}, parte_inteira, parte_fracionaria);\n'
+            f'\tconstant fim_med           : s_fixo  := to_sfixed({(fim_n + fim_l) / 2}, parte_inteira, parte_fracionaria);\n'
+            f'\tconstant sig_y_min         : s_fixo  := to_sfixed({1 / (1 + exp(-x_min)):.10f}, parte_inteira, parte_fracionaria);\n',
+            f'\tconstant sig_y_med         : s_fixo  := to_sfixed({1 / (1 + exp(-x_med)):.10f}, parte_inteira, parte_fracionaria);\n',
+            f'\tconstant sig_y_max         : s_fixo  := to_sfixed({1 / (1 + exp(-x_max)):.10f}, parte_inteira, parte_fracionaria);\n',
+            f'\tconstant s_fim_l           : s_fixo  := to_sfixed({1 / (1 + exp(-fim_l))}, parte_inteira, parte_fracionaria);\n'
+            f'\tconstant s_fim_n           : s_fixo  := to_sfixed({1 / (1 + exp(-fim_n))}, parte_inteira, parte_fracionaria);\n'
+            f'\tconstant s_fim_med         : s_fixo  := to_sfixed({1 / (1 + exp(-(fim_n + fim_l) / 2))}, parte_inteira, parte_fracionaria);\n'
         ]
 
         linha = f'\tconstant maior_por_caracteristica : vec_s_fixo({n_caracteristicas} - 1 downto 0) := ('

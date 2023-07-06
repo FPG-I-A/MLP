@@ -1,0 +1,30 @@
+[*]
+[*] GTKWave Analyzer v3.3.114 (w)1999-2023 BSI
+[*] Thu Jul  6 11:31:05 2023
+[*]
+[dumpfile] "/home/luis/git/MLP/resultados/sigmoide/sigmoide_tb.ghw"
+[dumpfile_mtime] "Thu Jul  6 11:30:51 2023"
+[dumpfile_size] 795652
+[savefile] "/home/luis/git/MLP/gtkw/sigmoide.gtkw"
+[timestart] 0
+[size] 2560 988
+[pos] 0 420
+*-32.384766 12610000000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top.
+[treeopen] top.sigmoide_tb.
+[treeopen] top.sigmoide_tb.uut_tres.
+[sst_width] 209
+[signals_width] 494
+[sst_expanded] 1
+[sst_vpaned_height] 294
+@28
+top.sigmoide_tb.clk
+@40000420
+[fpshift_count] 12
+#{top.sigmoide_tb.entrada_ponto_fixo[3:-12]} top.sigmoide_tb.entrada_ponto_fixo[3] top.sigmoide_tb.entrada_ponto_fixo[2] top.sigmoide_tb.entrada_ponto_fixo[1] top.sigmoide_tb.entrada_ponto_fixo[0] top.sigmoide_tb.entrada_ponto_fixo[-1] top.sigmoide_tb.entrada_ponto_fixo[-2] top.sigmoide_tb.entrada_ponto_fixo[-3] top.sigmoide_tb.entrada_ponto_fixo[-4] top.sigmoide_tb.entrada_ponto_fixo[-5] top.sigmoide_tb.entrada_ponto_fixo[-6] top.sigmoide_tb.entrada_ponto_fixo[-7] top.sigmoide_tb.entrada_ponto_fixo[-8] top.sigmoide_tb.entrada_ponto_fixo[-9] top.sigmoide_tb.entrada_ponto_fixo[-10] top.sigmoide_tb.entrada_ponto_fixo[-11] top.sigmoide_tb.entrada_ponto_fixo[-12]
+[fpshift_count] 12
+#{top.sigmoide_tb.resultado_tres_partes[3:-12]} top.sigmoide_tb.resultado_tres_partes[3] top.sigmoide_tb.resultado_tres_partes[2] top.sigmoide_tb.resultado_tres_partes[1] top.sigmoide_tb.resultado_tres_partes[0] top.sigmoide_tb.resultado_tres_partes[-1] top.sigmoide_tb.resultado_tres_partes[-2] top.sigmoide_tb.resultado_tres_partes[-3] top.sigmoide_tb.resultado_tres_partes[-4] top.sigmoide_tb.resultado_tres_partes[-5] top.sigmoide_tb.resultado_tres_partes[-6] top.sigmoide_tb.resultado_tres_partes[-7] top.sigmoide_tb.resultado_tres_partes[-8] top.sigmoide_tb.resultado_tres_partes[-9] top.sigmoide_tb.resultado_tres_partes[-10] top.sigmoide_tb.resultado_tres_partes[-11] top.sigmoide_tb.resultado_tres_partes[-12]
+[fpshift_count] 12
+#{top.sigmoide_tb.resultado_quatro_partes[3:-12]} top.sigmoide_tb.resultado_quatro_partes[3] top.sigmoide_tb.resultado_quatro_partes[2] top.sigmoide_tb.resultado_quatro_partes[1] top.sigmoide_tb.resultado_quatro_partes[0] top.sigmoide_tb.resultado_quatro_partes[-1] top.sigmoide_tb.resultado_quatro_partes[-2] top.sigmoide_tb.resultado_quatro_partes[-3] top.sigmoide_tb.resultado_quatro_partes[-4] top.sigmoide_tb.resultado_quatro_partes[-5] top.sigmoide_tb.resultado_quatro_partes[-6] top.sigmoide_tb.resultado_quatro_partes[-7] top.sigmoide_tb.resultado_quatro_partes[-8] top.sigmoide_tb.resultado_quatro_partes[-9] top.sigmoide_tb.resultado_quatro_partes[-10] top.sigmoide_tb.resultado_quatro_partes[-11] top.sigmoide_tb.resultado_quatro_partes[-12]
+[pattern_trace] 1
+[pattern_trace] 0
