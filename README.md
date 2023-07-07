@@ -30,6 +30,10 @@ $$
 
 Assim, reduzimos o algoritmo para a normalização dos dados de entrada antes da primeira camada e uma iteração passando por todas as camadas realizando a operação de multiplicação de matrizes e a sigmoide vetorial.
 
+## Requisitos para executar a inferência
+
+A ideia aqui é um modelo apenas de inferência, desta forma o treino deve ter sido realizado previamente de alguma forma e os parâmetros salvos no formato correto. Para isso então é necessário utilizar o script de treino no repositório de [testes dos algoritmos](https://github.com/FPG-I-A/Testes-algoritmos) e trazer para a pasta [Dados/Pesos](Dados/Pesos/) os parâmetros que ficarão salvos na pasta `Algoritmos python/modelo`. Assim, para que o módulo de [inferência](/modulos/inferencia/REAMDE.md) possa ser executado corretamente a pasta [Dados/Pesos](Dados/Pesos/) deve ter `n` pastas nomeadas de l1 até ln, sendo n o número de camadas na rede treinada. Caso essas pastas não existam, pesos aleatórios serão atribuídos para uma rede neural com 1 camada contendo a quantidade de neurônios igual à quantidade de saídas do modelo, no caso do dataset Iris seria uma camada de 4 entradas e 3 neurônios.
+
 ## Módulos implementados
 
 Uma descrição de hardware em VHDL é realizada criando e unindo diversos blocos de circuitos digitais. Assim, para criar o algoritmo vários blocos com funções limitadas foram criados.

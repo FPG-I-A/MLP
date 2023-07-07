@@ -38,6 +38,27 @@ def recebe_dados(seed, tamanho_teste):
     return dados
 
 
+def verifica_modelo(seed, n_caracteristicas, n_classes):
+    dir_modelo = Path('..', 'Dados', 'Pesos')
+    camadas = len(
+        list(filter(lambda caminho: caminho.is_dir(), dir_modelo.iterdir()))
+    )
+    if camadas == 0:
+        np.random.seed(seed)
+        pesos = [np.random.randn(n_caracteristicas, n_classes)]
+        vieses = [np.random.randn(n_classes)]
+        return pesos, vieses
+
+    pesos = []
+    vieses = []
+    for n_camada in range(1, camadas + 1):
+        camada = dir_modelo / f'l{n_camada}'
+        pesos.append(np.loadtxt(camada / 'weight.txt', delimiter=',').T)
+        vieses.append(np.loadtxt(camada / 'bias.txt', delimiter=','))
+
+    return pesos, vieses
+
+
 def cria_cabecalho(arquivo):
     linhas = [
         'library ieee;\n',
@@ -180,9 +201,40 @@ def cria_dataset(arquivo, nome, dados, amostras_treino, amostras_teste):
         arquivo.writelines(['\t);\n\n'])
 
 
+def cria_camada(arquivo, camada, pesos, vieses):
+    cabecalho = f'\t-- ---------------------------------- Camada {camada} ----------------------------------\n'
+
+    # Escrevendo pesos
+    declaracao = f'\tconstant pesos_{camada} : mat_s_fixo({pesos.shape[0]} - 1 downto 0, {pesos.shape[1]} - 1 downto 0) := (\n'
+    arquivo.writelines([cabecalho, declaracao])
+    escreve_matriz(
+        arquivo,
+        pesos,
+        len(declaracao) + 4,
+        pesos.shape[0] - 1,
+        pesos.shape[1] - 1,
+    )
+
+    # Escrevendo vieses
+    declaracao = f'\tconstant vieses_{camada} : vec_s_fixo({vieses.shape[0]} - 1 downto 0) := (\n'
+    arquivo.writelines(declaracao)
+    vetor = ' ' * (len(declaracao) + 4)
+    for i, valor in enumerate(vieses):
+        vetor = (
+            vetor
+            + f'{i} => to_sfixed({valor}, parte_inteira, parte_fracionaria)'
+        )
+        if i != vieses.shape[0] - 1:
+            vetor = vetor + ', '
+        if i % 2 == 1:
+            vetor = vetor + '\n' + ' ' * (len(declaracao) + 4)
+    vetor = vetor + '\n\t);\n\n'
+    arquivo.writelines(vetor)
+
+
 def gera(
-    parte_inteira,
-    parte_fracionaria,
+    parte_inteira=2,
+    parte_fracionaria=14,
     seed=42,
     tamanho_teste=0.33,
     x_min=-4,
@@ -192,24 +244,20 @@ def gera(
     fim_n=3.85,
 ):
     dados = recebe_dados(seed, tamanho_teste)
+    amostras_treino = dados[0].shape[0]
+    amostras_teste = dados[1].shape[0]
+    n_classes = dados[3].shape[1]
+    n_caracteristicas = dados[0].shape[1]
     nomes = ['x_treino', 'x_teste', 'y_treino', 'y_teste']
+    pesos, vieses = verifica_modelo(seed, n_caracteristicas, n_classes)
 
     with open('pacote_aux.vhdl', mode='w') as arquivo:
         cria_cabecalho(arquivo)
         cria_costantes(arquivo, parte_inteira, parte_fracionaria)
         cria_tipos(arquivo)
 
-        amostras_treino = dados[0].shape[0]
-        amostras_teste = dados[1].shape[0]
-        n_classes = dados[3].shape[1]
-        n_caracteristicas = dados[0].shape[1]
-
         linhas = [
-            f'\t-- ---------------------------------- Dataset ----------------------------------\n',
-            f'\tconstant amostras_treino   : integer := {amostras_treino};\n'
-            f'\tconstant amostras_teste    : integer := {amostras_teste};\n'
-            f'\tconstant n_classes         : integer := {n_classes};\n'
-            f'\tconstant n_caracteristicas : integer := {n_caracteristicas};\n',
+            f'\t-- ---------------------------------- Sigmoide ----------------------------------\n',
             f'\tconstant sig_x_min         : s_fixo  := to_sfixed({x_min}, parte_inteira, parte_fracionaria);\n',
             f'\tconstant sig_x_med         : s_fixo  := to_sfixed({x_med}, parte_inteira, parte_fracionaria);\n',
             f'\tconstant sig_x_max         : s_fixo  := to_sfixed({x_max}, parte_inteira, parte_fracionaria);\n',
@@ -221,7 +269,12 @@ def gera(
             f'\tconstant sig_y_max         : s_fixo  := to_sfixed({1 / (1 + exp(-x_max)):.10f}, parte_inteira, parte_fracionaria);\n',
             f'\tconstant s_fim_l           : s_fixo  := to_sfixed({1 / (1 + exp(-fim_l))}, parte_inteira, parte_fracionaria);\n'
             f'\tconstant s_fim_n           : s_fixo  := to_sfixed({1 / (1 + exp(-fim_n))}, parte_inteira, parte_fracionaria);\n'
-            f'\tconstant s_fim_med         : s_fixo  := to_sfixed({1 / (1 + exp(-(fim_n + fim_l) / 2))}, parte_inteira, parte_fracionaria);\n',
+            f'\tconstant s_fim_med         : s_fixo  := to_sfixed({1 / (1 + exp(-(fim_n + fim_l) / 2))}, parte_inteira, parte_fracionaria);\n\n',
+            f'\t-- ---------------------------------- Dataset ----------------------------------\n',
+            f'\tconstant amostras_treino   : integer := {amostras_treino};\n'
+            f'\tconstant amostras_teste    : integer := {amostras_teste};\n'
+            f'\tconstant n_classes         : integer := {n_classes};\n'
+            f'\tconstant n_caracteristicas : integer := {n_caracteristicas};\n\n',
         ]
 
         linha = f'\tconstant maior_por_caracteristica : vec_s_fixo({n_caracteristicas} - 1 downto 0) := ('
@@ -252,8 +305,11 @@ def gera(
         for nome, dado in zip(nomes, dados):
             cria_dataset(arquivo, nome, dado, amostras_treino, amostras_teste)
 
+        for camada, (p, v) in enumerate(zip(pesos, vieses)):
+            cria_camada(arquivo, camada + 1, p, v)
+
         arquivo.writelines(['end package pacote_aux;\n'])
 
 
 if __name__ == '__main__':
-    gera(2, 14)
+    gera()
