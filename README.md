@@ -43,3 +43,5 @@ Cada módulo possuí uma sessão de mapeamento genérico e uma de mapeamento de 
 - [`norm`](modulos/norm/README.md)
 - [`vec_mat_mul`](modulos/vec_mat_mul/README.md)
 - [`sigmoide`](modulos/sigmoide/README.md)
+- [`ativacao`](modulos/ativacao/README.md)
+- [`camada`](modulos/camada/README.md)

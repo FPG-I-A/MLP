@@ -275,7 +275,12 @@ def seleciona_modulos(args, parser):
     # Garante que os módulos que dependem de outros sejam analisados
     # após suas dependências
     dict_deps = {
-        Path('modulos', 'ativacao'): [Path('modulos', 'sigmoide')]
+        Path('modulos', 'ativacao'): [Path('modulos', 'sigmoide')],
+        Path('modulos', 'camada'): [
+            Path('modulos', 'vec_mat_mul'),
+            Path('modulos', 'sigmoide'),
+            Path('modulos', 'ativacao'),
+        ],
     }
     for dependente, dependencias in dict_deps.items():
         if dependente in modulos:
