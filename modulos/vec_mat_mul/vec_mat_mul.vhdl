@@ -70,6 +70,9 @@ begin
             
             -- Quando terminar todas as colunas a multiplicação foi finalizada
             if linha_matriz = entradas - 1 and coluna_matriz = neuronios - 1 then
+                linha_matriz <= linha_matriz + 1;
+                coluna_matriz <= coluna_matriz + 1;
+            elsif linha_matriz = entradas and coluna_matriz = neuronios then
                 o_ocupado   <= '0';
                 o_resultado <= resultado;
             end if;

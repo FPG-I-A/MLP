@@ -85,15 +85,16 @@ begin
 
     end process conta;
 
-    termina: process(o_ocupado, i_clk) is
+    -- termina: process(o_ocupado, i_clk) is
+    termina: process is
     begin
-        if falling_edge(o_ocupado) then
-            finalizou <= '1';
-        end if;
-
-        if falling_edge(i_clk) and finalizou = '1' then
-            finish;
-        end if;
+        -- if falling_edge(o_ocupado) and finalizou = '0' then
+        --     finalizou <= '1';
+        -- elsif finalizou = '1' then
+        --     finish;
+        -- end if;
+        wait for 15 us;
+        finish;
     end process termina;
     
 
