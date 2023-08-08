@@ -49,3 +49,4 @@ Cada módulo possuí uma sessão de mapeamento genérico e uma de mapeamento de 
 - [`sigmoide`](modulos/sigmoide/README.md)
 - [`ativacao`](modulos/ativacao/README.md)
 - [`camada`](modulos/camada/README.md)
+- [`rede`](modulos/rede/README.md)

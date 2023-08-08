@@ -5,6 +5,7 @@ from pathlib import Path
 from statistics import mean
 
 import matplotlib.pyplot as plt
+import numpy as np
 
 
 def ajuda():
@@ -91,9 +92,29 @@ def erros_sigmoide():
     erro('tres')
 
 
+def acuracia():
+    def processa_linha(linha):
+        return linha.split(';')
+
+    with open(Path('resultados', 'rede', f'rede.csv')) as arquivo:
+        arquivo.readline()
+        dados = map(lambda string: string[:-1], arquivo.readlines())
+        valores = list(zip(*map(processa_linha, dados)))
+        reais = np.array(list(map(int, valores[0])))
+        calculados = np.array(
+            [list(map(fixo_para_float, valor)) for valor in valores[1:]]
+        ).T
+        classe = calculados.argmax(axis=1)
+        print(
+            f'Acurácia do modelo: {(classe == reais).sum() / reais.shape[0]:.2%}'
+        )
+
+
 if __name__ == '__main__':
     modulo = parse_args()
     funcao = None
     match modulo:
         case 'sigmoide':
             erros_sigmoide()
+        case 'rede':
+            acuracia()

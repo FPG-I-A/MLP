@@ -302,9 +302,13 @@ def gera(
             x_treino[:, i] = (x_treino[:, i] - np.min(x_treino[:, i])) / (
                 np.max(x_treino[:, i]) - np.min(x_treino[:, i])
             )
-        
-        cria_dataset(arquivo, nomes[1], dados[1], amostras_treino, amostras_teste)
-        cria_dataset(arquivo, nomes[3], dados[3], amostras_treino, amostras_teste)
+
+        cria_dataset(
+            arquivo, nomes[1], dados[1], amostras_treino, amostras_teste
+        )
+        cria_dataset(
+            arquivo, nomes[3], dados[3], amostras_treino, amostras_teste
+        )
 
         for camada, (p, v) in enumerate(zip(pesos, vieses)):
             cria_camada(arquivo, camada + 1, p, v)

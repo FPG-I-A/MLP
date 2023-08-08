@@ -281,6 +281,12 @@ def seleciona_modulos(args, parser):
             Path('modulos', 'sigmoide'),
             Path('modulos', 'ativacao'),
         ],
+        Path('modulos', 'rede'): [
+            Path('modulos', 'vec_mat_mul'),
+            Path('modulos', 'sigmoide'),
+            Path('modulos', 'ativacao'),
+            Path('modulos', 'camada'),
+        ],
     }
     for dependente, dependencias in dict_deps.items():
         if dependente in modulos:
@@ -437,8 +443,8 @@ if __name__ == '__main__':
                     mostra_ondas(modulo, parser, args.verboso)
 
         # Remove biblioteca work
-        for arquivo in Path('.').glob('work-*.cf'):
-            arquivo.unlink()
+        # for arquivo in Path('.').glob('work-*.cf'):
+        #    arquivo.unlink()
 
     if args.limpa:
         shutil.rmtree('build')
